@@ -48,8 +48,9 @@ export default function About() {
             <div className="relative rounded-3xl overflow-hidden img-zoom">
               <img
                 src="https://image.qwenlm.ai/generated-images/99f9520e-608d-4a1c-a2f0-f471073a8686/_result.png"
-                alt="Desert Safari Camp"
+                alt="Desert Safari Camp - Dubai Safari"
                 className="w-full h-[500px] object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </div>

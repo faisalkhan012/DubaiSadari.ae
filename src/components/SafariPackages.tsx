@@ -1,59 +1,85 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Clock, Users, Star, Check } from 'lucide-react';
+import { Clock, Users, Star, Check, Crown } from 'lucide-react';
 
 const packages = [
   {
-    name: 'Morning Safari',
-    price: '150',
-    duration: '4 Hours',
-    groupSize: 'Max 6',
+    name: 'Standard Safari',
+    price: '120',
+    duration: '7 Hours',
+    groupSize: 'Shared',
     rating: 4.8,
     popular: false,
     features: [
-      'Dune bashing adventure',
-      'Sandboarding experience',
-      'Camel riding',
-      'Refreshments included',
-      'Hotel pickup & dropoff',
-    ],
-    image: 'https://image.qwenlm.ai/generated-images/29339b1c-e78c-4a3d-9fc6-61d68f685a29/_result.png',
-  },
-  {
-    name: 'Evening Safari',
-    price: '250',
-    duration: '7 Hours',
-    groupSize: 'Max 6',
-    rating: 4.9,
-    popular: true,
-    features: [
-      'Dune bashing adventure',
-      'Sunset photography stop',
-      'Camel riding',
-      'BBQ Dinner buffet',
-      'Belly dance show',
-      'Fire show performance',
-      'Henna painting',
-      'Hotel pickup & dropoff',
+      'Pick Up and Drop Off',
+      '10 - 15 Minutes Dune Bashing in Red Sands',
+      'Sand-Boarding, Short Camel Ride',
+      'Unlimited Coffee, Tea & Arabic Sweets',
+      'Evening Snacks',
+      'Henna Painting for Ladies & Kids',
+      '6 Live Entertainment Shows',
+      '2 Belly Dances, 2 Tanoura Dances',
+      '2 Fire Shows',
+      'Soft Drinks & Mineral Water',
+      'Arabic Costumes For Pictures',
+      'Dinner Tables with carpet and pillows',
+      'Veg & Non-Veg BBQ Buffet Dinner',
+      'Hygienic Toilet facilities',
     ],
     image: 'https://image.qwenlm.ai/generated-images/99f9520e-608d-4a1c-a2f0-f471073a8686/_result.png',
   },
   {
-    name: 'Overnight Safari',
-    price: '450',
-    duration: '18 Hours',
-    groupSize: 'Max 4',
+    name: 'Premium Safari',
+    price: '140',
+    duration: '7 Hours',
+    groupSize: 'Small Group',
+    rating: 4.9,
+    popular: true,
+    features: [
+      'Everything in Standard Safari',
+      'Pick Up and Drop Off',
+      '10 - 15 Minutes Dune Bashing in Red Sands',
+      'Sand-Boarding, Short Camel Ride',
+      'Unlimited Coffee, Tea & Arabic Sweets',
+      'Evening Snacks',
+      'Henna Painting for Ladies & Kids',
+      '6 Live Entertainment Shows',
+      '2 Belly Dances, 2 Tanoura Dances',
+      '2 Fire Shows',
+      'Soft Drinks & Mineral Water',
+      'Arabic Costumes For Pictures',
+      'ATV Quad Bike Ride - 20 Minutes',
+      'Dinner Tables with carpet and pillows',
+      'Veg & Non-Veg BBQ Buffet Dinner',
+      'Hygienic Toilet facilities',
+    ],
+    image: 'https://image.qwenlm.ai/generated-images/29339b1c-e78c-4a3d-9fc6-61d68f685a29/_result.png',
+  },
+  {
+    name: 'VIP Safari',
+    price: '150',
+    duration: '7 Hours',
+    groupSize: 'Exclusive',
     rating: 5.0,
     popular: false,
     features: [
-      'Everything in Evening Safari',
-      'Luxury desert camp stay',
-      'Stargazing session',
-      'Traditional breakfast',
-      'Quad biking',
-      'Falcon photography',
-      'VIP seating area',
-      'Professional photographer',
+      'Everything in Premium Safari',
+      'Pick Up and Drop Off',
+      '10 - 15 Minutes Dune Bashing in Red Sands',
+      'Sand-Boarding, Short Camel Ride',
+      'Unlimited Coffee, Tea & Arabic Sweets',
+      'Evening Snacks',
+      'Henna Painting for Ladies & Kids',
+      '6 Live Entertainment Shows',
+      '2 Belly Dances, 2 Tanoura Dances',
+      '2 Fire Shows',
+      'Soft Drinks & Mineral Water',
+      'Arabic Costumes For Pictures',
+      'ATV Quad Bike Ride - 20 Minutes',
+      'VIP Seating With Table-Servings',
+      'Dinner Tables with carpet and pillows',
+      'Veg & Non-Veg BBQ Buffet Dinner',
+      'Hygienic Toilet facilities Separate for Men & Women',
     ],
     image: 'https://image.qwenlm.ai/generated-images/933a95a4-89f3-4f2b-b631-a88dafc80d7b/_result.png',
   },
@@ -84,7 +110,7 @@ export default function SafariPackages() {
           </h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
             Select from our carefully curated safari packages designed to give you
-            the ultimate desert experience in Dubai.
+            the ultimate desert experience in Dubai. All packages include hotel pickup & dropoff.
           </p>
         </motion.div>
 
@@ -102,7 +128,8 @@ export default function SafariPackages() {
             >
               {/* Popular badge */}
               {pkg.popular && (
-                <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-gradient-to-r from-desert-500 to-desert-600 text-white text-xs font-bold rounded-full">
+                <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-gradient-to-r from-desert-500 to-desert-600 text-white text-xs font-bold rounded-full flex items-center gap-1">
+                  <Crown size={12} />
                   Most Popular
                 </div>
               )}
@@ -113,6 +140,7 @@ export default function SafariPackages() {
                   src={pkg.image}
                   alt={pkg.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] to-transparent" />
               </div>
@@ -141,18 +169,20 @@ export default function SafariPackages() {
                 </div>
 
                 {/* Features */}
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-6 max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
                   {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-white/60">
-                      <Check size={14} className="text-desert-400 flex-shrink-0" />
-                      {feature}
+                    <li key={feature} className="flex items-start gap-2 text-sm text-white/60">
+                      <Check size={14} className="text-desert-400 flex-shrink-0 mt-0.5" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* CTA */}
                 <motion.a
-                  href="#contact"
+                  href={`https://wa.me/971566289116?text=Hi! I'm interested in the ${pkg.name} package (AED ${pkg.price}). Please share more details.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={`block text-center py-3 rounded-xl font-semibold transition-all ${
@@ -161,7 +191,7 @@ export default function SafariPackages() {
                       : 'bg-white/10 text-white hover:bg-white/15'
                   }`}
                 >
-                  Book Now
+                  Book via WhatsApp
                 </motion.a>
               </div>
             </motion.div>
